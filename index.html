@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego del Ahorcado</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="word-container"></div>
+  <div id="message"></div>
+  <div>Intentos restantes: <span id="remaining-attempts"></span></div>
+  <div id="letter-buttons"></div>
+  <button id="reset-button">Reiniciar</button>
+  <div id="hangman-figure">
+    <!-- Añade las partes del ahorcado aquí -->
+    <div class="part" id="head"></div>
+    <div class="part" id="body"></div>
+    <div class="part" id="left-arm"></div>
+    <div class="part" id="right-arm"></div>
+    <div class="part" id="left-leg"></div>
+    <div class="part" id="right-leg"></div>
+  </div>
+  <script src="Juego.js"></script>
+</body>
+</html>
