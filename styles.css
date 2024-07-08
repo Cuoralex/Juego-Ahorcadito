@@ -1,0 +1,291 @@
+*{
+    box-sizing:border-box;
+    margin:0px;
+    padding:0px;
+}
+
+html{
+    height:100%;
+}
+
+body{
+    width: auto;
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 100%;
+    font-size: 2vw; /*Ajusta el texto según el width de la ventana*/
+}
+
+.container >*{
+    box-shadow: -1px 1px 7px 0px rgba(0,0,0,0.75);
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+}
+
+/*Visibilidad celular*/
+.container{
+    display: grid; /*así se convierte en un grid y lo que cotenga en grid items*/
+    gap: 10px;
+    grid-template: 
+        "header" 50px
+        "main1" 180px
+        "main2" auto
+        "footer" 50px;
+}
+
+/*visible en mediano*/
+@media (min-width:600px) { 
+    .container{
+        grid-template:
+        "header header" 100px
+        "main1 main2" auto
+        "footer footer" 50px /
+        270px auto; 
+    
+}}
+
+/*Visible en grande*/
+/*3ra vista escritorio*/
+@media (min-width:900px){
+    .container{
+        grid-template: /*así se ajusta para un tamaño mayor de 900px, divide las columnas en partes iguales*/ 
+        "header header header" 100px
+        "main1 main1 main2" auto
+        "footer footer footer" 50px /
+        200px auto; 
+    }
+}
+
+
+/*colores de los grid*/
+/*Debe colocarse el nombre de la clase*/
+.titulo {
+    grid-area: header;
+    background-color: rgb(100, 100, 230);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  
+.instruccion {
+    grid-area: main1;
+    background: #e4ba49;
+    display: flex;
+    flex-direction: column; /* Para mantener el contenido en una columna */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    /*height: 80vh; /* Ajustar ventana alarga la ventana, util para landing page*/
+    text-align: center; /* Opcional, para centrar el texto */
+}
+
+.hangman {
+    grid-area: main2;
+    background: #03741b;
+    display: flex;
+    flex-direction: column; /* Para mantener el contenido en una columna */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    /*height: 80vh; /* Ajustar ventana alarga la ventana, util para landing page*/
+    text-align: center; /* Opcional, para centrar el texto */
+}
+.letras-ocultas {
+    grid-area: main2;
+    background: #4a534c;
+}
+
+.presentacion {
+    grid-area: footer;
+    background-color: #8c96a0;
+  }
+
+#hangman {display: flex;
+    flex-direction: column; /* Para mantener el contenido en una columna */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    /*height: 80vh; /* Ajustar ventana alarga la ventana, util para landing page*/
+    text-align: center; /* Opcional, para centrar el texto */
+    width: 300px; /* Ajustar este valor para cambiar el tamaño del cuadro*/
+    height: 300px; /* Ajustar este valor para cambiar el tamaño del cuadro*/
+    border: 4px solid black;
+}
+
+#letras-ocultas {
+    font-size: 24px;
+    margin: 20px;
+}
+
+#cabeza{
+    top: 70px;
+    left: 50%;
+    width: 50px; /* Ancho del círculo*/
+    height: 50px; /* Altura del círculo*/
+    border-radius: 50%; /* Hace que el borde sea redondo, creando así un círculo*/
+    border:10px solid #000000; /* Color de fondo del círculo*/
+}
+
+#cuerpo {
+    top: 70px;
+    left: 57%;
+    width: 10px; /* Ancho del palito vertical*/
+    height: 70px; /* Altura del palito vertical*/
+    background-color: #000000; /* Color del palito vertical*/
+}
+
+#brazo-izq {
+    position: absolute;
+    left: 70%;
+    width: 10px; /* Ancho del palito horizontal*/
+    height: 60px; /* Altura del palito horizontal*/
+    background-color:#000000; /* Color del palito horizontal*/
+    transform: rotate(-45deg);
+}
+
+#brazo-der {
+    position: absolute;
+    left: 75%;
+    width: 10px; /* Ancho del palito horizontal*/
+    height: 60px; /* Altura del palito horizontal*/
+    background-color:#000000; /* Color del palito horizontal*/
+    transform: rotate(-135deg);
+}
+
+#pierna-izq {
+    position: absolute;
+    top: 50%;
+    left:70%;
+    width: 10px; /* Ancho del palito horizontal*/
+    height: 60px; /* Altura del palito horizontal*/
+    background-color: #000000; /* Color del palito horizontal*/
+    transform: rotate(-150deg);
+}
+
+#pierna-der {
+    position: absolute;
+    top: 50%;
+    left:70%;
+    width: 100px; /* Ancho del palito horizontal*/
+    height: 2px; /* Altura del palito horizontal*/
+    background-color: 000000; /* Color del palito horizontal*/
+    transform: rotate(-125deg);
+}
+
+.parte-muneco {
+    position: relative;
+    display:none; /*Inicialmente oculto*/
+}
+
+/*Inicio presentación index*/
+/* Palabras animadas*/
+  .palabras-animadas {
+    position: relative;
+    font-size: 24px;
+    display: inline-block;
+    animation: mover 2s ease-in-out infinite alternate;
+}
+
+.palabras-animadas::before{
+    display: block;
+    position: absolute;
+    left:0;
+}
+.palabras-animadas::before{
+    animation: moveText 5s linear infinite;
+}
+
+/*Hace al animación de las letras en index*/
+
+@keyframes mover {
+    0%{
+        transform: translateY(0);
+    }
+    100% {
+        transform:translateY(200px);
+    }
+}
+
+.palabras-animadas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(20px, 1fr));
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #333;
+}
+
+.palabras-animadas::before {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+} 
+
+/*horca*/  
+.soga {
+    position: absolute;
+    top: 60%;
+    right: 190px;
+    width: 70px; /* Ancho del dibujo*/
+    height: 70px; /* Altura del dibujo*/
+    border-radius: 50%;
+    border: 10px solid rgb(23, 250, 23);;
+    transform: translateY(-20%); /* Centrar verticalmente*/
+  }
+
+/*horizontal de la horca*/
+  .fixed-drawing-gallow1 {
+    position: absolute;
+    top: 47%;
+    right: 20px;
+    width: 250px; /* Ancho del dibujo*/
+    height: 10px; /* Altura del dibujo*/
+    background-color:  rgb(23, 250, 23);
+    transform: translateY(-20%); /* Centrar verticalmente*/
+  }
+
+/*vertical de la horca*/
+.fixed-drawing-gallow2 {
+    position: absolute;
+    top: 57%;
+    right: 27px;
+    width: 10px; /* Ancho del dibujo*/
+    height: 300px; /* Altura del dibujo*/
+    background-color:  rgb(23, 250, 23);
+    transform: translateY(-20%); /* Centrar verticalmente*/
+  }
+
+  /*Diagonal de la horca*/
+  .fixed-drawing-gallow3 {
+    position: absolute;
+    top: 47%;
+    right: 1px;
+    width: 100px; /* Ancho del dibujo*/
+    height: 10px; /* Altura del dibujo*/
+    background-color:  rgb(23, 250, 23);
+    transform: translateY(-20%); /* Centrar verticalmente*/
+    transform: rotate(45deg);
+    transform-origin: top left;
+  }
+
+  /*Base de la horca*/
+  .fixed-drawing-gallow4 {
+    position: absolute;
+    top: 105%;
+    right: 3px;
+    width: 200px; /* Ancho del dibujo*/
+    height: 40px; /* Altura del dibujo*/
+    background-color:  rgb(23, 250, 23);
+    transform: translateY(-200%); /* Centrar verticalmente*/
+  }
+
+  /*Base de todo*/
+  .fixed-drawing-gallow5 {
+    position: absolute;
+    top: 97%;
+    right: 0px;
+    width: 1500px; /* Ancho del dibujo*/
+    height: 10px; /* Altura del dibujo*/
+    background-color:  rgb(23, 250, 23);
+    transform: translateY(-20%); /* Centrar verticalmente*/
+  }

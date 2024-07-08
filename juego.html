@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="soga.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="styles.css">
+  
+    <title>Ahorcado</title>
+</head>
+
+<body class="container">
+        <header class="titulo"> <h1>Juego del Ahorcadito</h1></header>
+            <main1 class="instruccion">
+                <h1>Instrucciones</h1>
+                <p id="instrucciones">Adivina la palabra ingresando letra por letra.</br> Tienes 6 intentos. Cada letra incorrecta</br> dibuja
+                    una parte del muñeco.</p>
+                <input type="text" id="nombre" placeholder="Nombre Completo">
+                <input type="email" id="correo" placeholder="Correo Electrónico">
+                </br><button onclick="iniciarJuego()">Iniciar Juego</button>
+                <div id="info-jugador">
+                    <p id="nombre-jugador"></p>
+                    <p id="monedas"></p>
+                </div>
+            </main1>
+            <main2 class="hangman">
+                <div id="hangman">
+                    <div id="cabeza" class="parte-muneco"></div>
+                    <div id="cuerpo" class="parte-muneco"></div>
+                    <div id="brazo-der" class="parte-muneco"></div>
+                    <div id="brazo-izq" class="parte-muneco"></div>
+                    <div id="pierna-izq" class="parte-muneco"></div>
+                    <div id="pierna-der" class="parte-muneco"></div> 
+                </div>
+                <div class="letrasOcultas">          
+                    <p id="letras-ocultas"></p>
+                    <input type="text" id="letra" maxlength="1">
+                    <button onclick="verificarLetra()">Verificar</button>
+                    <p id="intentos-restantes"></p>
+                    <button onclick="reiniciarJuego()">Reiniciar Juego</button>
+                </div>
+            </main2>
+        <footer class="presentacion">Alexandra Cuartas Orozco</footer>
+    <script src="ahorcado.js"></script>
+</body>
+</html>

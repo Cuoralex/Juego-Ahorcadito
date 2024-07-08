@@ -1,0 +1,109 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+html{
+height: 100%;/*Estira el grip para que ocupe el 100% de la página*/
+}
+
+body {
+    font-family: century;
+    font-size: 1.2rem;
+    min-height: 100%;/*Estira el grip para que ocupe el 100% de la página*/
+}
+
+.container > * {
+    box-shadow: -1px 1px 7px 0px rgba(0,0,0,0.75);/*sombra*/
+    border-radius: 4px;/*redondea esquinas*/
+    padding: 10px; /*separa verticalmente*/
+    text-align: center;/*centra el texto*/
+}
+
+/*colores de los grid*/
+    .header {
+    grid-area: header;
+    background-color: #85aedd;
+  }
+  
+  .sidebar {
+    grid-area: sidebar;
+    background-color: #fdcfcf;
+  }
+  
+  .main {
+    grid-area: main;
+    background-color: #f5f5f5;
+  }
+  
+  .footer {
+    grid-area: footer;
+    background-color: #8c96a0;
+  }
+
+/*1ra VISTA - celular*/
+.container{
+    display: grid; /*así se convierte en un grid y lo que cotenga en grid items*/
+    gap: 10px;/* separación entre si verticalmente elms*/
+    /* grid-template-areas: 
+        "header"
+        "navbar"
+        "sidebar"
+        "main"
+        "footer";Definir áreas mediante el grid-template-areas  darles el área que queremos 
+}
+        Para modificar el ancho de las columnas ya que las filas sera por defecto*/
+        grid-template: 
+        "header" 100px
+        "navbar" 50px
+        "sidebar" 100px
+        "main" auto
+        "footer" 100px;
+
+}
+
+/*2nda VISTA*/
+@media (min-width:600px) { /*Todo lo que tenga esta media queri se va a ejecutar cuando el ancho sea mínimo 600px*/
+    .container{
+    /*background-color: blue; da la coloración cuando la pantalla es menor de 600px*/
+    /* grid-template-columns: 200px auto;/*divide las columnas desiguales una con 200px y otra con auto, toma lo que queda
+    grid-template-rows: 100px 50px auto 100px; /*para ubicar las filas, se coloca tantas como se necesite ubicar*/
+    /*grid-template-areas: /*así se ajusta para un tamaño mayor de 600px, divide las columnas en partes iguales
+        "header header"
+        "navbar navbar"
+        "sidebar main"
+        "footer footer";
+    } 
+        
+    Otra forma*/
+    /* grid-template: /*así se ajusta para un tamaño mayor de 600px, divide las columnas en partes iguales 
+        "header header" 100px
+        "navbar navbar" 50px
+        "sidebar main" auto
+        "footer footer" 100px /
+        200px auto; /*los valores de la columna
+    } */
+
+    /*Primera columna vacía*/
+    grid-template: /*así se ajusta para un tamaño mayor de 600px, divide las columnas en partes iguales*/ 
+        ". header" 100px
+        "navbar navbar" 50px
+        "sidebar main" auto
+        "footer footer" 100px /
+        200px auto; /*los valores de la columna*/
+    }
+}
+
+/*3ra vista escritorio*/
+@media (min-width:900px){
+    .container{
+        grid-template: /*así se ajusta para un tamaño mayor de 900px, divide las columnas en partes iguales*/ 
+        "header header header" 100px
+        "navbar main sidebar" auto
+        "footer footer footer" 100px /
+        200px auto 200px; 
+    }
+}
+
+/*Solo funciona para áreas rectangulares*/
