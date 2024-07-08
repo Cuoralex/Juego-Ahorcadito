@@ -27,13 +27,14 @@ body{
     display: grid; /*así se convierte en un grid y lo que cotenga en grid items*/
     gap: 10px;
     grid-template: 
-        "header" 50px
+        "header" 30px
         "main1" 180px
         "main2" auto
         "footer" 50px;
 }
 
 /*visible en mediano*/
+
 @media (min-width:600px) { 
     .container{
         grid-template:
